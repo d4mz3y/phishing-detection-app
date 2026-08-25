@@ -1,0 +1,34 @@
+{
+  "model_name": "distilbert/distilbert-base-uncased",
+  "metadata_features": [
+    "url_count",
+    "unique_domain_count",
+    "mean_url_length",
+    "max_url_length",
+    "has_ip_url",
+    "has_suspicious_tld",
+    "sender_domain_digit_count",
+    "has_suspicious_sender",
+    "subject_length",
+    "body_length",
+    "caps_ratio",
+    "special_char_count",
+    "has_urgency_words",
+    "has_threat_words",
+    "receiver_count"
+  ],
+  "max_length": 128,
+  "threshold": 0.5,
+  "seed": 42,
+  "dataset_path": "data/raw/dataset/Nazario_5.csv",
+  "dataset_sha256": "afef69828165619ced6661ca14a95444a1db82c7b25ae9c2619bbbb108844a44",
+  "dataset_rows": 3065,
+  "split_rows": {
+    "train": 2145,
+    "validation": 460,
+    "test": 460
+  },
+  "trained_at": "2026-08-25T13:04:58.137863+00:00",
+  "device": "cpu",
+  "text_encoder_frozen": true
+}

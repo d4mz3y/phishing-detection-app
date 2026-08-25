@@ -1,0 +1,9 @@
+-r requirements.txt
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.6,<3
+transformers>=4.50,<6
+scikit-learn>=1.6,<2
+pandas>=2.2,<4
+joblib>=1.4,<2
+shap>=0.47,<1
+kagglehub>=0.3,<2

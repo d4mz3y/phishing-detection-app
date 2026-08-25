@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Phishing Email Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-shield-alt"></i>
+                <span>PhishGuard AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Detection</a></li>
+                <li><a href="/results" class="nav-link">Performance</a></li>
+                <li><a href="/about" class="nav-link active">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="about-hero">
+            <h1>About This System</h1>
+            <p class="about-subtitle">Multimodal Deep Learning for Phishing Detection</p>
+            <div class="disclosure-note">
+                <i class="fas fa-circle-info"></i>
+                <span>The live application now implements a trained DistilBERT text branch, neural metadata branch, late fusion, attention diagnostics, and metadata SHAP. Reported dissertation values below remain labelled separately from the reproducible live evaluation.</span>
+            </div>
+        </div>
+
+        <div class="about-content">
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h2>Aim</h2>
+                <p>To develop an AI-based phishing email detection system using multimodal deep learning with explainable and lightweight architectures, capable of accurately distinguishing between phishing and legitimate emails while providing transparent reasoning for its predictions.</p>
+            </div>
+
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="fas fa-list-check"></i>
+                </div>
+                <h2>Objectives</h2>
+                <ul>
+                    <li>Collect and preprocess phishing and legitimate email data</li>
+                    <li>Develop a multimodal deep learning model integrating text and metadata</li>
+                    <li>Evaluate model performance using standard metrics</li>
+                    <li>Incorporate explainable AI techniques (SHAP, Attention Visualization)</li>
+                    <li>Implement a lightweight, deployable system</li>
+                </ul>
+            </div>
+
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <h2>Multimodal Architecture</h2>
+                <div class="architecture-flow">
+                    <div class="arch-node">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email Input</span>
+                    </div>
+                    <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="arch-node">
+                        <i class="fas fa-broom"></i>
+                        <span>Preprocessing</span>
+                    </div>
+                    <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="arch-node">
+                        <i class="fas fa-brain"></i>
+                        <span>DistilBERT<br>Text Branch</span>
+                    </div>
+                    <div class="arch-arrow"><i class="fas fa-plus"></i></div>
+                    <div class="arch-node">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Metadata<br>Network</span>
+                    </div>
+                    <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="arch-node">
+                        <i class="fas fa-object-group"></i>
+                        <span>Late Fusion</span>
+                    </div>
+                    <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="arch-node highlight">
+                        <i class="fas fa-check-double"></i>
+                        <span>Classification</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h2>Reported Dissertation Model Performance</h2>
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <div class="metric-value">98.89%</div>
+                        <div class="metric-label">Accuracy</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">99.11%</div>
+                        <div class="metric-label">Precision</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">98.67%</div>
+                        <div class="metric-label">Recall</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">98.89%</div>
+                        <div class="metric-label">F1-Score</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">99.97%</div>
+                        <div class="metric-label">ROC-AUC</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h2>Explainability Features</h2>
+                <div class="xai-features">
+                    <div class="xai-item">
+                        <i class="fas fa-highlighter"></i>
+                        <div>
+                            <h4>Attention Visualization</h4>
+                            <p>Highlights influential words and phrases in email text that drive phishing predictions</p>
+                        </div>
+                    </div>
+                    <div class="xai-item">
+                        <i class="fas fa-chart-pie"></i>
+                        <div>
+                            <h4>SHAP Values</h4>
+                            <p>Quantifies the contribution of each metadata feature to the final classification</p>
+                        </div>
+                    </div>
+                    <div class="xai-item">
+                        <i class="fas fa-search"></i>
+                        <div>
+                            <h4>URL Analysis</h4>
+                            <p>Identifies suspicious URL patterns, IP addresses, typosquatting, and malicious domains</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h2>Dataset Information</h2>
+                <p>The downloaded cited archive contains <strong>56,733 rows</strong>. The live multimodal model uses all <strong>3,065 metadata-complete Nazario_5 rows</strong> (1,565 phishing and 1,500 legitimate); 53,668 text-only rows were excluded from multimodal evaluation because they lack sender and URL metadata.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>AI-Based Phishing Email Detection System Using Multimodal Deep Learning</p>
+            <p class="footer-sub">Northumbria University - MSc Cyber Security Dissertation</p>
+        </div>
+    </footer>
+</body>
+</html>

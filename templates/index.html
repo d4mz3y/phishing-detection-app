@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Email Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-shield-alt"></i>
+                <span>PhishGuard AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link active">Detection</a></li>
+                <li><a href="/results" class="nav-link">Performance</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="hero-section">
+            <h1>AI-Based Phishing Email Detection</h1>
+            <p class="hero-subtitle">Real-time text, sender, metadata, and URL risk analysis</p>
+            <div class="model-badges">
+                <span class="badge"><i class="fas fa-font"></i> Text Signals</span>
+                <span class="badge"><i class="fas fa-network-wired"></i> Metadata + URLs</span>
+                <span class="badge"><i class="fas fa-chart-line"></i> Explainable Results</span>
+            </div>
+            <p class="engine-note" id="engineNote"><i class="fas fa-circle-info"></i> Checking live detection engine…</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="input-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-envelope-open-text"></i> Email Analysis</h2>
+                    <div class="sample-buttons">
+                        <button onclick="loadSample('legitimate')" class="btn-sample btn-legitimate">
+                            <i class="fas fa-check-circle"></i> Load Legitimate Sample
+                        </button>
+                        <button onclick="loadSample('phishing')" class="btn-sample btn-phishing">
+                            <i class="fas fa-exclamation-triangle"></i> Load Phishing Sample
+                        </button>
+                    </div>
+                </div>
+
+                <form id="emailForm" class="email-form">
+                    <div class="form-group">
+                        <label for="emailFile"><i class="fas fa-file-arrow-up"></i> Upload Email (.eml or .txt)</label>
+                        <input type="file" id="emailFile" name="email_file" accept=".eml,.txt,message/rfc822,text/plain">
+                        <small class="form-help">Uploading fills the fields below; review them before analysis.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="sender"><i class="fas fa-user"></i> Sender Email</label>
+                        <input type="email" id="sender" name="sender" placeholder="e.g., sender@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject"><i class="fas fa-heading"></i> Subject Line</label>
+                        <input type="text" id="subject" name="subject" placeholder="Enter email subject..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="body"><i class="fas fa-align-left"></i> Email Body</label>
+                        <textarea id="body" name="body" rows="8" placeholder="Paste email content here..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="urls"><i class="fas fa-link"></i> URLs Found in Email</label>
+                        <textarea id="urls" name="urls" rows="3" placeholder="Enter URLs found in the email, one per line..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-analyze" id="analyzeBtn">
+                        <i class="fas fa-search-plus"></i> Analyze Email
+                    </button>
+                </form>
+            </div>
+
+            <div class="results-panel" id="resultsPanel">
+                <div class="placeholder-state" id="placeholderState">
+                    <div class="placeholder-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Ready to Analyze</h3>
+                    <p>Enter email details or load a sample to begin phishing detection analysis.</p>
+                </div>
+
+                <div class="results-content" id="resultsContent" style="display: none;">
+                    <div class="result-header" id="resultHeader">
+                        <div class="result-icon" id="resultIcon"></div>
+                        <div class="result-info">
+                            <h2 id="resultPrediction"></h2>
+                            <p id="resultConfidence"></p>
+                            <p id="resultEngine" class="result-engine"></p>
+                        </div>
+                    </div>
+
+                    <div class="probability-bar-container">
+                        <div class="probability-label">
+                            <span>Phishing Probability</span>
+                            <span id="probabilityValue">0%</span>
+                        </div>
+                        <div class="probability-bar">
+                            <div class="probability-fill" id="probabilityFill"></div>
+                        </div>
+                    </div>
+
+                    <div class="explainability-section">
+                        <h3><i class="fas fa-microscope"></i> Explainability Analysis</h3>
+                        
+                        <div class="explainability-grid">
+                            <div class="explain-card">
+                                <h4><i class="fas fa-font"></i> Text Indicators</h4>
+                                <div id="textExplanations" class="explain-list"></div>
+                            </div>
+
+                            <div class="explain-card">
+                                <h4><i class="fas fa-link"></i> URL Analysis</h4>
+                                <div id="urlExplanations" class="explain-list"></div>
+                            </div>
+                        </div>
+
+                        <div class="explain-card feature-card">
+                            <h4><i class="fas fa-chart-bar"></i> Feature Contributions</h4>
+                            <div id="featureContributions" class="feature-list"></div>
+                        </div>
+                    </div>
+
+                    <div class="timestamp-info">
+                        <i class="fas fa-clock"></i> Analysis completed: <span id="timestamp"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>Explainable Phishing Email Detection</p>
+            <p class="footer-sub">Text + Sender + Metadata + URL Analysis</p>
+        </div>
+    </footer>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Analyzing email...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js', v='4') }}"></script>
+</body>
+</html>

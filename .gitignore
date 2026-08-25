@@ -1,0 +1,22 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+.env
+.venv
+uploads/*
+!uploads/.gitkeep
+data/raw/
+.DS_Store
+*.log
+node_modules/
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Frozen pretrained encoder (public HuggingFace weights, not repo IP; >100MB, re-downloaded on setup)
+model/text_encoder/
