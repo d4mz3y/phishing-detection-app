@@ -40,6 +40,17 @@ Open `http://127.0.0.1:5000`. The banner and `/api/health` should report `distil
 
 Environment overrides: `HOST`, `PORT`, `FLASK_DEBUG`, `MODEL_DIR`, and `SECRET_KEY`.
 
+### Docker
+
+The `Dockerfile` installs the CPU build of PyTorch, fetches the DistilBERT weights at build time and serves the app with gunicorn on port 7860:
+
+```bash
+docker build -t phishguard-ai .
+docker run --rm -p 7860:7860 phishguard-ai
+```
+
+Then open `http://127.0.0.1:7860`. The first build is large because of PyTorch.
+
 ## Reproduce training
 
 The Kaggle archive has no published license metadata. Review its terms before redistribution. Raw data is excluded from Git.
